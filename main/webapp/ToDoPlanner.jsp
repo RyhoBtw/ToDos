@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
 <!DOCTYPE html>
 <html>
 	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" href="Stylesheet.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<script src="PopUpFenster.js"></script>
@@ -15,10 +15,14 @@
 	<body>
 		<header>
 			<h1>Todo Planner</h1>
-			<button class="add-task-btn" type="button" onclick="openPopUp()">+ New Task</button>
+			<div class="header-buttons">
+				<button id="darkModeToggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+				<button class="add-task-btn" type="button" onclick="openPopUp()">＋ New Task</button>
+			</div>
 		</header>
 
-		<section class="filter-bar">
+
+	<section class="filter-bar">
 			<div class="filter">
 				<label for="categoryFilter">Category:</label>
 				<select id="categoryFilter" class="pretty-select" onchange="filterTasks()">
@@ -49,7 +53,7 @@
 				<div class="task-column active-tasks">
 					<h2>Active Tasks</h2>
 					<ul id="activeTasksList">
-<%--					<div class="task">Walk the dog <button onclick="markDone(this)">?</button></div>--%>
+<%--					<div class="task">Walk the dog <button onclick="markDone(this)">✓</button></div>--%>
 					</ul>
 					<div class="quick-add">
 						<input
@@ -57,7 +61,7 @@
 								id="quickAddInput"
 								placeholder="Quick add task..."
 						/>
-						<button onclick="quickAddTask()">?</button>
+						<button onclick="quickAddTask()">＋</button>
 					</div>
 				</div>
 				</div>
