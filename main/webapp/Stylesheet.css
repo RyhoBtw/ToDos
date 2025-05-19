@@ -1,9 +1,14 @@
 body {
 	background-color: black;
+	font-family: Arial;
 }
 
 h1 {
 	color: white;
+}
+
+h3 {
+	text-align: center;
 }
 
 .header-row {
@@ -13,6 +18,10 @@ h1 {
   padding: 10px 20px;
 }
 
+.filter-group {
+  display: flex;
+  align-items: center;         /* vertikal zentriert */
+}
 .add {
 	padding: 8px 16px;
   	font-size: 16px;
@@ -28,6 +37,7 @@ h1 {
 
 #myModal {
 	border: none;
+	border-radius: 20px;
 }
 
 input {
@@ -48,14 +58,16 @@ input {
 .kanban-column {
   flex: 1 1 300px; /* wächst, schrumpft, min. 300px */
   min-height: 600px;
-  background-color: lightgrey;
+  background-color: white;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 20px;
   padding: 1px;
   box-sizing: border-box;
 }
 
-h3 {
-	text-align: center;
+.button-group {
+	display: flex;
+	gap: 50px;
 }
+
 
