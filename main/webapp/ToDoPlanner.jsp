@@ -16,7 +16,7 @@
 		<header>
 			<h1>Todo Planner</h1>
 			<div class="header-buttons">
-				<button id="darkModeToggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+				<button id="darkModeToggle">Dark Mode</button>
 				<button class="add-task-btn" type="button" onclick="openPopUp()">＋ New Task</button>
 			</div>
 		</header>
@@ -44,7 +44,6 @@
 		</section>
 
 
-
 		<main>
 			<section class="task-column">
 				<h2>Active Tasks</h2>
@@ -61,7 +60,7 @@
 								id="quickAddInput"
 								placeholder="Quick add task..."
 						/>
-						<button>＋</button>
+						<button onclick="quickAddTask()">＋</button>
 					</div>
 				</div>
 				</div>

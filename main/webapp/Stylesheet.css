@@ -91,8 +91,6 @@ main {
     min-height: 300px;
 }
 
-
-
 .task {
     display: flex;
     justify-content: space-between;
@@ -297,6 +295,28 @@ body.dark-mode header {
     border-bottom: 1px solid #444;
 }
 
+body.dark-mode #darkModeToggle {
+    padding: 0.5rem 1rem;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .add-task-btn {
+    padding: 0.5rem 1rem;
+    background-color: #0080c0;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode label {
@@ -322,7 +342,7 @@ body.dark-mode .task.done {
 }
 
 body.dark-mode .task button {
-    background-color: #4caf50;
+    background-color: #0080c0;
     color: #fff;
 }
 
@@ -337,7 +357,7 @@ body.dark-mode .quick-add input {
 }
 
 body.dark-mode .quick-add button {
-    background-color: #4caf50;
+    background-color: #0080c0;
     color: #fff;
 }
 
@@ -363,7 +383,7 @@ body.dark-mode dialog select {
 }
 
 body.dark-mode .button-group button {
-    background-color: #4caf50;
+    background-color: #0080c0;
     color: #fff;
 }
 
