@@ -16,7 +16,7 @@
 		<header>
 			<h1>Todo Planner</h1>
 			<div class="header-buttons">
-				<button id="darkModeToggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+				<button id="darkModeToggle" onclick="toggleDarkMode()">🌙</button>
 				<button class="add-task-btn" type="button" onclick="openPopUp()">＋ New Task</button>
 			</div>
 		</header>

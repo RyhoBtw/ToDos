@@ -27,6 +27,21 @@ header {
     gap: 1rem;
 }
 
+header.dark-mode #darkModeToggle {
+    padding: 0.5rem 1rem;
+    background: #f2f2f2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+header.dark-mode #darkModeToggle:hover {
+    background-color: #777;
+}
+
 /* Dark Mode Button Styling */
 #darkModeToggle {
     padding: 0.5rem 1rem;
