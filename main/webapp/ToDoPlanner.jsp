@@ -43,7 +43,7 @@
 			</div>
 		</section>
 
-		</section>
+
 
 		<main>
 			<section class="task-column">
@@ -81,11 +81,12 @@
 				<input id="1" name="ToDoName" type="text" required placeholder="MyTask"><br>
 
 				<label for="3">Priority</label>
-				<select id="3" name="Priority" required>
-					<option value="High">High</option>
-					<option value="Medium">Medium</option>
-					<option value="Low">Low</option>
-				</select><br><br>
+				<input type = "range" id="3" name="Priority" required min = "1" max="3"  step = "1">
+				 <span value = "1"></span>
+					<span >Low</span>
+					<span >Medium</span>
+					<span >High</span>
+				<br><br>
 
 				<label for="4">Category</label>
 				<input id="4" name="Category" type="text" required placeholder="Category" list="options"/><br>
