@@ -61,7 +61,7 @@
 								id="quickAddInput"
 								placeholder="Quick add task..."
 						/>
-						<button onclick="quickAddTask()">＋</button>
+						<button>＋</button>
 					</div>
 				</div>
 				</div>
