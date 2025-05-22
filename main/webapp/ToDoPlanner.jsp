@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		<header>
-			<h1>Todo Planner</h1>
+			<h1>ToDo Planner</h1>
 			<div class="header-buttons">
 				<button id="darkModeToggle" onclick="toggleDarkMode()">🌙</button>
 				<button class="add-task-btn" type="button" onclick="openPopUp()">＋ New Task</button>
@@ -107,5 +107,12 @@
 				</div>
 			</form>
 		</dialog>
+		
+		<footer>
+			<a class="Impressum" href="Impressum_Datenschutz.html">Impressum & Datenschutzerklärung</a>
+			<button class="Help" onclick="window.location.href='Bedienungsanleitung.html'">?</button>
+			
+		</footer>
+		
 	</body>
 </html>
