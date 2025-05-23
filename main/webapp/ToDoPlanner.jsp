@@ -53,16 +53,28 @@
 				<div class="task-column active-tasks">
 					<h2>Active Tasks</h2>
 					<ul id="activeTasksList">
-<%--					<div class="task">Walk the dog <button onclick="markDone(this)">✓</button></div>--%>
+					        <ul>
+								<c:forEach var="todo" items="${todos}">
+									<c:if test="${todo.status == 'ToDo'}">
+										<li>
+											<div class="task"><strong>${todo.title}</strong> - Priority: ${todo.priority},
+												Category: ${todo.category}
+												<form action="markTodoDone" method="post">
+													<input type="hidden" name="todoId" value="${todo.id}"/>
+													<button type="submit">✓</button>
+												</form>
+											</div></li>
+									</c:if>
+								</c:forEach>
+							</ul>
+
 					</ul>
-					<div class="quick-add">
-						<input
-								type="text"
-								id="quickAddInput"
-								placeholder="Quick add task..."
-						/>
-						<button>＋</button>
-					</div>
+					<form id="quickAddForm" class="Test" action="todo" method="post">
+						<div class="quick-add">
+							<input class="quick-add-input" type="text" name="title" placeholder="Quick add task...">
+							<button class="add-task-btn" type="submit">＋</button>
+						</div>
+					</form>
 				</div>
 				</div>
 			</section>
@@ -70,25 +82,37 @@
 			<section class="task-column">
 				<h2>Done Tasks</h2>
 				<div id="doneTasks" class="task-list">
-<%--					<div class="task done">Read emails</div>--%>
+					<ul id="doneTasksList">
+						<ul>
+							<c:forEach var="todo" items="${todos}">
+								<c:if test="${todo.status == 'Done'}">
+									<li>
+										<div class="task"><strong>${todo.title}</strong> - Priority: ${todo.priority},
+											Category: ${todo.category}
+										</div></li>
+								</c:if>
+							</c:forEach>
+						</ul>
+
+					</ul>
 				</div>
 			</section>
 		</main>
 		<dialog id="myModal">
 			<h2>New ToDo</h2>
-			<form action="todo" method="post">
+			<form class="add-task-dialog" action="todo" method="post">
 				<label for="1">Title</label>
-				<input id="1" name="ToDoName" type="text" required placeholder="MyTask"><br>
+				<input id="1" name="title" type="text" required placeholder="MyTask">
 
 				<label for="3">Priority</label>
-				<select id="3" name="Priority" required>
+				<select id="3" name="priority" required>
 					<option value="High">High</option>
 					<option value="Medium">Medium</option>
 					<option value="Low">Low</option>
 				</select><br><br>
 
 				<label for="4">Category</label>
-				<input id="4" name="Category" type="text" required placeholder="Category" list="options"/><br>
+				<input id="4" name="category" type="text" required placeholder="Category" list="options"/><br>
 				<datalist id="options">
 					<option>Homework</option>
 					<option>Chores</option>
@@ -96,10 +120,7 @@
 				</datalist>
 
 				<label for="5">Enddate</label>
-				<input id="5" name="Enddate" type="date" required><br>
-
-				<label for="6">Status</label>
-				<input id="6" name="Status" type="text" value="ToDo" disabled><br>
+				<input id="5" name="enddate" type="date" required><br>
 
 				<div class="button-group">
 					<button type="submit">Add ToDo</button>

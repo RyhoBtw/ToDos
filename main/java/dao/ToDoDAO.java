@@ -8,29 +8,28 @@ import java.util.List;
 
 public class ToDoDAO {
 
-    // Verbindung zur Datenbank aufbauen
-    private static Connection getConnection() throws SQLException {
-        // Passen Sie die Zugangsdaten und URL an Ihre Datenbank an
-        String url = "jdbc:mysql://localhost:3306/tododb";
-        String user = "root";
-        String password = "passwort";
-        return DriverManager.getConnection(url, user, password);
+    private static Connection getConnection() throws SQLException, ClassNotFoundException {
+        Class.forName("org.sqlite.JDBC");
+        String url = "jdbc:sqlite:/home/rhyo/Documents/Studium/webingeneering/ToDos/src/main/toDos.db";
+        return DriverManager.getConnection(url);
     }
 
-    // Neues ToDo speichern
     public static void save(ToDo todo) {
         String sql = "INSERT INTO todos (title, priority, category, status) VALUES (?, ?, ?, ?)";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
             stmt.setString(1, todo.getTitle());
-            stmt.setString(3, todo.getPriority());
-            stmt.setString(4, todo.getCategory());
-            stmt.setString(5, todo.getStatus());
+            stmt.setString(2, todo.getPriority());
+            stmt.setString(3, todo.getCategory());
+            stmt.setString(4, todo.getStatus());
+
+            System.out.println("Saved ToDo: " + todo.getTitle());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -55,6 +54,8 @@ public class ToDoDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
         return list;
@@ -79,7 +80,7 @@ public class ToDoDAO {
                 return todo;
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;
@@ -100,6 +101,8 @@ public class ToDoDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -112,8 +115,24 @@ public class ToDoDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
 
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void markAsDone(int id) {
+        String sql = "UPDATE todos SET status = ? WHERE id = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, "Done");
+            stmt.setString(2, String.valueOf(id));
+
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 }

@@ -29,11 +29,13 @@ public class ToDoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Formulardaten abrufen
+
         String title = request.getParameter("title");
         String priority = request.getParameter("priority");
+        if (priority == null) priority = "Low";
         String category = request.getParameter("category");
-        String status = request.getParameter("status");
+        if (category == null) category = "Other";
+        String status = "ToDo";
 
         // Neues ToDo-Objekt erstellen
         ToDo todo = new ToDo();
@@ -51,3 +53,4 @@ public class ToDoServlet extends HttpServlet {
         response.sendRedirect("todo");
     }
 }
+

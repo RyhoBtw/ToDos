@@ -21,7 +21,15 @@ header {
     border-bottom: 1px solid #ddd;
 }
 
-/* Group the buttons on the right */
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+    /* Group the buttons on the right */
 .header-buttons {
     display: flex;
     gap: 1rem;
@@ -104,17 +112,39 @@ main {
     padding: 1rem;
     box-shadow: 0 1px 5px rgba(0,0,0,0.05);
     min-height: 300px;
+    overflow-y: auto;
+    max-height: 80%;
 }
+
+body.dark-mode .quick-add-input {
+    background: #444;
+    color: #ddd;
+    border: 1px solid #666;
+}
+
+body.dark-mode .quick-add-input:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
 
 .task {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: #f9f9f9;
-    padding: 0.75rem 1rem;
+    padding: 1rem; /* Equal padding for consistent spacing */
     border-radius: 5px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem; /* Space between tasks */
     transition: background 0.3s;
+    min-height: 60px; /* Set a consistent minimum height */
+    box-sizing: border-box; /* Ensure padding does not affect overall dimensions */
+}
+
+body.dark-mode .task {
+    background: #3a3a3a;
+    color: #fff;
+    border: 1px solid #666;
 }
 
 .task.done {
@@ -124,15 +154,24 @@ main {
 }
 
 .task button {
-    background: #4CAF50;
-    color: white;
+    width: 32px;
+    height: 32px; /* Maintain square shape while keeping rounded corners */
+    padding: 0; /* No additional padding */
+    border-radius: 6px; /* Slightly rounded corners (you can adjust this to match other buttons) */
+    font-size: 16px;
+    line-height: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #4caf50;
+    color: #fff;
     border: none;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
+
 
 .modal {
     display: none;
@@ -200,8 +239,8 @@ dialog h2 {
     margin-bottom: 1rem;
 }
 
-dialog form input,
-dialog form select {
+form input,
+form select {
     width: 100%;
     padding: 0.5rem;
     margin-bottom: 1rem;
@@ -248,25 +287,56 @@ body.dark-mode header {
 
 .quick-add {
     display: flex;
-    gap: 0.5rem;
-    padding: 1rem 0;
+    align-items: center; /* Ensures all items are vertically centered */
+    gap: 0.5rem; /* Adds space between the input and button */
+    margin-top: 1rem; /* Optional spacing from surrounding elements */
 }
 
-.quick-add input {
-    flex: 1;
-    padding: 0.5rem;
-    border-radius: 5px;
+.quick-add button,
+.quick-add-input {
+    margin: 0; /* Clears any default margin */
+    border: none; /* Clears any default borders */
+    outline: none; /* Removes default focus outline */
+}
+
+.quick-add-input,
+.quick-add button.add-task-btn {
+    font-size: 100%; /* Default sizing, consistent across both */
+    font-family: inherit; /* Use the body’s font style */
+}
+
+
+
+.quick-add-input {
+    flex: 1; /* Ensures the input takes the available space */
+    padding: 0.6rem; /* Add consistent padding for better appearance */
     border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    line-height: 1.2; /* Ensures consistent height alignment with the button */
+    box-sizing: border-box; /* Ensures padding doesn’t affect width */
 }
 
-.quick-add button {
-    padding: 0.5rem 1rem;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #4caf50;
-    color: white;
-    cursor: pointer;
+.quick-add button.add-task-btn {
+    padding: 0.6rem 1rem; /* Matches input’s padding */
+    font-size: 1rem; /* Matches font size with input */
+    line-height: 1.2; /* Matches line height with input */
+    border-radius: 5px; /* Matches the input's rounded edges */
+    box-sizing: border-box; /* Ensures consistent dimensions */
+    white-space: nowrap; /* Prevents text from wrapping in the button */
+    display: inline-flex; /* Ensures button's content stays vertically centered */
+    align-items: center; /* Centers content inside the button */
+    justify-content: center;
+}
+
+.quick-add-input:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Green glow effect */
+}
+
+.quick-add button.add-task-btn {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
 }
 
 .filter-bar {
@@ -350,17 +420,13 @@ body.dark-mode .task-list {
     box-shadow: 0 1px 4px rgba(255, 255, 255, 0.03);
 }
 
-body.dark-mode .task-list li {
-    background-color: #3a3a3a;
-    color: #fff;
-    border: 1px solid #555;
-    border-radius: 5px;
+body.dark-mode .task.done {
+    background: #4a4a4a; /* Slightly darker shade for distinction */
+    color: #aaa; /* Muted color for done tasks */
+    border: 1px solid #555; /* Match with dark mode theme */
+    text-decoration: line-through; /* Keeps the line-through for done tasks */
 }
 
-body.dark-mode .task.done {
-    background-color: #444;
-    color: #bbb;
-}
 
 body.dark-mode .task button {
     background-color: #0080c0;
