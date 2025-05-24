@@ -8,18 +8,21 @@ function closePopUp() {
 	document.getElementById('myModal').close();
 }
 
+// Beim Laden der Seite prüfen, ob Dark Mode aktiviert war
+window.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+    }
+});
+
 function toggleDarkMode() {
-	const element = document.body;
-	i++;
-	element.classList.toggle("dark-mode");
+    const element = document.body;
+    element.classList.toggle("dark-mode");
 
-	if(i === 20) {
-		let intervalId = setInterval(() => {
-			element.classList.toggle("dark-mode");
-		}, 50);
-
-		setTimeout(() => {
-			clearInterval(intervalId);
-		}, 10000);
-	}
+    // Status speichern
+    if (element.classList.contains("dark-mode")) {
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        localStorage.setItem('darkMode', 'disabled');
+    }
 }
