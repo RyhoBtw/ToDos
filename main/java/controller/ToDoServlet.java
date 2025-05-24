@@ -43,18 +43,19 @@ public class ToDoServlet extends HttpServlet {
         String category = request.getParameter("category");
         if (category == null) category = "Other";
         String status = "ToDo";
+        if (request.getParameter("delet") != null) {
+            ToDoDAO.delete(request.getParameter("delet"));
+        } else {
+            // Neues ToDo-Objekt erstellen
+            ToDo todo = new ToDo();
+            todo.setTitle(title);
+            todo.setPriority(priority);
+            todo.setCategory(category);
+            todo.setStatus(status);
 
-        // Neues ToDo-Objekt erstellen
-        ToDo todo = new ToDo();
-        todo.setTitle(title);
-        todo.setPriority(priority);
-        todo.setCategory(category);
-        todo.setStatus(status);
-
-        // In der Datenbank speichern
-        ToDoDAO.save(todo);
-        
-        System.out.println("Hallllllooooo");
+            // In der Datenbank speichern
+            ToDoDAO.save(todo);
+        }
 
         // Weiterleiten auf doGet (Liste aktualisieren)
         response.sendRedirect("todo");

@@ -167,12 +167,12 @@ public class ToDoDAO {
     }
 
     // ToDo löschen
-    public static void delete(int id) {
+    public static void delete(String id) {
         String sql = "DELETE FROM todos WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, id);
+            stmt.setInt(1, Integer.parseInt(id));
             stmt.executeUpdate();
 
         } catch (SQLException | ClassNotFoundException e) {

@@ -63,6 +63,10 @@
 										<li>
 											<div class="task"><strong>${todo.title}</strong> - Priority: ${todo.priority},
 												Category: ${todo.category}
+												<form action="todo" method="post">
+													<input type="hidden" name="delet" value="${todo.id}" />
+													<button type="submit" class="delete-task-btn">🗑️</button>
+												</form>
 												<form action="markTodoDone" method="post">
 													<input type="hidden" name="todoId" value="${todo.id}"/>
 													<button type="submit">✓</button>
