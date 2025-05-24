@@ -55,23 +55,42 @@
 				<div id="activeTasks" class="task-list">
 
 				<div class="task-column active-tasks">
-					<h2>Active Tasks</h2>
 					<ul id="activeTasksList">
 					        <ul>
+								<li class="task-header">
+									<div class="task-title">Name</div>
+									<div class="task-priority">Priority</div>
+									<div class="task-category">Category</div>
+									<div class="task-actions">Actions</div>
+								</li>
 								<c:forEach var="todo" items="${todos}">
 									<c:if test="${todo.status == 'ToDo'}">
 										<li>
-											<div class="task"><strong>${todo.title}</strong> - Priority: ${todo.priority},
-												Category: ${todo.category}
-												<form action="todo" method="post">
-													<input type="hidden" name="delet" value="${todo.id}" />
-													<button type="submit" class="delete-task-btn">🗑️</button>
-												</form>
-												<form action="markTodoDone" method="post">
-													<input type="hidden" name="todoId" value="${todo.id}"/>
-													<button type="submit">✓</button>
-												</form>
-											</div></li>
+											<div class="task">
+												<div class="task-title">
+													<strong>${todo.title}</strong>
+												</div>
+												<div class="task-priority">
+														${todo.priority}
+												</div>
+												<div class="task-category">
+														${todo.category}
+												</div>
+												<!-- Container for buttons -->
+												<div class="task-actions">
+													<!-- Delete Button -->
+													<form action="todo" method="post" style="display: inline;">
+														<input type="hidden" name="delet" value="${todo.id}" />
+														<button type="submit" class="delete-task-btn">🗑️</button>
+													</form>
+													<!-- Done Button -->
+													<form action="markTodoDone" method="post" style="display: inline;">
+														<input type="hidden" name="todoId" value="${todo.id}" />
+														<button type="submit" class="done-btn">✓</button>
+													</form>
+												</div>
+											</div>
+										</li>
 									</c:if>
 								</c:forEach>
 							</ul>
@@ -92,12 +111,33 @@
 				<div id="doneTasks" class="task-list">
 					<ul id="doneTasksList">
 						<ul>
+							<li class="task-header">
+								<div class="task-title">Name</div>
+								<div class="task-priority">Priority</div>
+								<div class="task-category">Category</div>
+								<div class="task-actions">Actions</div>
+							</li>
 							<c:forEach var="todo" items="${todos}">
 								<c:if test="${todo.status == 'Done'}">
-									<li>
-										<div class="task"><strong>${todo.title}</strong> - Priority: ${todo.priority},
-											Category: ${todo.category}
-										</div></li>
+								<li>
+									<div class="task">
+										<div class="task-title">
+											<strong>${todo.title}</strong>
+										</div>
+										<div class="task-priority">
+												${todo.priority}
+										</div>
+										<div class="task-category">
+											${todo.category}
+										</div>
+										<div class="task-actions">
+											<!-- Delete Button -->
+											<form action="todo" method="post" style="display: inline;">
+												<input type="hidden" name="delet" value="${todo.id}" />
+												<button type="submit" class="delete-task-btn">🗑️</button>
+											</form>
+										</div>
+									</div>
 								</c:if>
 							</c:forEach>
 						</ul>

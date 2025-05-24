@@ -129,9 +129,10 @@ body.dark-mode .quick-add-input:focus {
 
 
 .task {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr; /* Adjust columns for Title, Priority, Category, and Actions */
     align-items: center;
+    gap: 1rem; /* Space between columns */
     background: #f9f9f9;
     padding: 1rem; /* Equal padding for consistent spacing */
     border-radius: 5px;
@@ -139,6 +140,51 @@ body.dark-mode .quick-add-input:focus {
     transition: background 0.3s;
     min-height: 60px; /* Set a consistent minimum height */
     box-sizing: border-box; /* Ensure padding does not affect overall dimensions */
+}
+
+/* Task Header Alignment */
+.task-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr; /* Match structure with task grid */
+    align-items: center; /* Vertically align text and icons */
+    background: #e6e6e6; /* Subtle background color for distinction */
+    padding: 0.5rem; /* Reduced padding for smaller size */
+    border-radius: 5px;
+    margin-bottom: 0.5rem; /* Reduced space between tasks */
+    transition: background 0.3s;
+    min-height: 40px; /* Reduced minimum height */
+    box-sizing: border-box; /* Ensure padding does not affect overall dimensions */
+    font-weight: bold; /* Make text stand out */
+    font-size: 1rem; /* Slightly smaller font size */
+    color: #333; /* High contrast for readability */
+    text-transform: uppercase; /* Make the text more prominent */
+}
+
+.task-title, .task-priority, .task-category {
+    text-align: left;
+}
+
+/* Optional: Task actions (delete, mark done) alignment */
+/* Ensure buttons are aligned side by side */
+.task-actions {
+    display: flex; /* Use flexbox to align buttons horizontally */
+    gap: 0.5rem; /* Add space between the buttons */
+    align-items: center; /* Ensure vertical alignment */
+    justify-content: flex-start; /* Align buttons to the left (or change to center if required) */
+}
+
+.task-actions button {
+    width: 40px; /* Allow buttons to size naturally */
+    height: 32px; /* Maintain a consistent height */
+    padding: 0.5rem; /* Consistent padding */
+    border-radius: 5px; /* Rounded corners for a polished look */
+    cursor: pointer;
+}
+
+
+body.dark-mode .task-header {
+    background: #3a3a3a; /* Dark mode background color */
+    color: #eaeaea; /* High contrast for dark mode text */
 }
 
 body.dark-mode .task {
@@ -154,7 +200,6 @@ body.dark-mode .task {
 }
 
 .task button {
-    width: 32px;
     height: 32px; /* Maintain square shape while keeping rounded corners */
     padding: 0; /* No additional padding */
     border-radius: 6px; /* Slightly rounded corners (you can adjust this to match other buttons) */
