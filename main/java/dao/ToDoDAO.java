@@ -42,16 +42,7 @@ public class ToDoDAO {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
-            while (rs.next()) {
-                ToDo todo = new ToDo();
-                todo.setId(rs.getInt("id"));
-                todo.setTitle(rs.getString("title"));
-                todo.setPriority(rs.getString("priority"));
-                todo.setCategory(rs.getString("category"));
-                todo.setStatus(rs.getString("status"));
-
-                list.add(todo);
-            }
+            extractTodos(list, rs);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -84,6 +75,75 @@ public class ToDoDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+
+    public static List<ToDo> getByPrio(String priority) {
+        List<ToDo> list = new ArrayList<>();
+        String sql = "SELECT * FROM todos WHERE priority = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, priority);
+            ResultSet rs = stmt.executeQuery();
+
+            extractTodos(list, rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    public static List<ToDo> getByCategory(String category) {
+        List<ToDo> list = new ArrayList<>();
+        String sql = "SELECT * FROM todos WHERE category = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, category);
+            ResultSet rs = stmt.executeQuery();
+
+            extractTodos(list, rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    public static List<ToDo> getSpecific(String priority, String category) {
+        List<ToDo> list = new ArrayList<>();
+        String sql = "SELECT * FROM todos WHERE priority = ? AND category = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, priority);
+            stmt.setString(2, category);
+            ResultSet rs = stmt.executeQuery();
+
+            extractTodos(list, rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    private static void extractTodos(List<ToDo> list, ResultSet rs) throws SQLException {
+        while (rs.next()) {
+            ToDo todo = new ToDo();
+            todo.setId(rs.getInt("id"));
+            todo.setTitle(rs.getString("title"));
+            todo.setPriority(rs.getString("priority"));
+            todo.setCategory(rs.getString("category"));
+            todo.setStatus(rs.getString("status"));
+
+            list.add(todo);
+        }
     }
 
     // ToDo aktualisieren

@@ -22,28 +22,32 @@
 		</header>
 
 
-	<section class="filter-bar">
-			<div class="filter">
-				<label for="categoryFilter">Category:</label>
-				<select id="categoryFilter" class="pretty-select" onchange="filterTasks()">
-					<option value="All">All</option>
-					<option value="Homework">Homework</option>
-					<option value="Chores">Chores</option>
-					<option value="Unknown">Unknown</option>
-				</select>
-			</div>
-			<div class="filter">
-				<label for="priorityFilter">Priority:</label>
-				<select id="priorityFilter" class="pretty-select" onchange="filterTasks()">
-					<option value="All">All</option>
-					<option value="High">High</option>
-					<option value="Medium">Medium</option>
-					<option value="Low">Low</option>
-				</select>
-			</div>
+		<section class="filter-bar">
+			<form method="get" action="todo" style="display: flex; gap: 1rem; align-items: center; margin: 0;">
+				<!-- Category Filter -->
+				<div class="filter">
+					<label for="categoryFilter">Category:</label>
+					<select id="categoryFilter" name="category" class="pretty-select" onchange="this.form.submit()">
+						<option value="" ${param.category == "any" || param.category == null ? "selected" : ""}>All</option>
+						<option value="Homework" ${"Homework".equals(param.category) ? "selected" : ""}>Homework</option>
+						<option value="Chores" ${"Chores".equals(param.category) ? "selected" : ""}>Chores</option>
+						<option value="Other" ${"Other".equals(param.category) ? "selected" : ""}>Other</option>
+					</select>
+				</div>
+
+				<!-- Priority Filter -->
+				<div class="filter">
+					<label for="priorityFilter">Priority:</label>
+					<select id="priorityFilter" name="priority" class="pretty-select" onchange="this.form.submit()">
+						<option value="" ${param.priority == "any" || param.priority == null ? "selected" : ""}>All</option>
+						<option value="High" ${"High".equals(param.priority) ? "selected" : ""}>High</option>
+						<option value="Medium" ${"Medium".equals(param.priority) ? "selected" : ""}>Medium</option>
+						<option value="Low" ${"Low".equals(param.priority) ? "selected" : ""}>Low</option>
+					</select>
+				</div>
+			</form>
 		</section>
 
-		</section>
 
 		<main>
 			<section class="task-column">

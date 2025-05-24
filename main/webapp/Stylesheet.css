@@ -340,12 +340,44 @@ body.dark-mode header {
 }
 
 .filter-bar {
-    display: flex;
-    justify-content: flex-start;
-    gap: 2rem;
-    margin: 1rem 2rem;
-    flex-wrap: wrap;
+    display: flex; /* Ensure items inside align horizontally */
+    gap: 1rem; /* Adds spacing between form elements */
+    align-items: center; /* Vertically center items */
+    flex-wrap: nowrap; /* Prevent wrapping to the next line */
 }
+
+/* Make sure the <form> spans only the space it needs */
+.filter-bar form {
+    display: flex; /* Align dropdowns horizontally inside the form */
+    gap: 1rem; /* Adds spacing horizontally between filters */
+    flex-wrap: nowrap; /* Prevent line breaking inside the form */
+    margin: 0; /* Remove any default margins from the form */
+}
+
+/* Each filter container (label + select) must remain inline */
+.filter {
+    display: inline-flex; /* Align label and select side by side */
+    align-items: center; /* Vertically align label and select components */
+    gap: 0.5rem; /* Space between label and select */
+    white-space: nowrap; /* Prevent text wrapping in filters */
+}
+
+/* Optional improvement: Ensure consistent dropdown appearance */
+.pretty-select {
+    padding: 0.5rem; /* Add padding for better usability */
+    border: 1px solid #ccc; /* Simple border */
+    border-radius: 6px; /* Smooth corners */
+    background-color: #fff; /* White background for better contrast */
+    font-size: 1rem; /* Uniform font size */
+    cursor: pointer; /* Show pointer cursor on hover */
+    transition: border-color 0.3s ease; /* Smooth border focus transition */
+}
+
+.pretty-select:focus {
+    border-color: #4caf50; /* Highlight border on focus */
+    outline: none; /* Remove the default focus outline */
+}
+
 
 .filter label {
     margin-right: 0.5rem;
@@ -353,19 +385,22 @@ body.dark-mode header {
 }
 
 .pretty-select {
-    padding: 0.4rem 0.6rem;
-    border-radius: 6px;
+    padding: 0.5rem;
     border: 1px solid #ccc;
-    background-color: white;
+    border-radius: 6px;
+    background-color: #fff;
     font-size: 1rem;
-    appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 0.5rem center;
-    background-size: 1rem;
-    padding-right: 2rem;
     cursor: pointer;
+    transition: border-color 0.3s ease;
 }
+
+/* Focus effect for select dropdown */
+.pretty-select:focus {
+    border-color: #4caf50;
+    outline: none;
+}
+
+
 
 /* Dark mode styles */
 /* 🌙 Dark Mode Styles – Gleiches Design, nur dunkler */

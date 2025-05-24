@@ -16,13 +16,20 @@ public class ToDoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Alle ToDos aus der Datenbank holen
-        List<ToDo> todos = ToDoDAO.getAll();
 
-        // In den Request setzen (für die JSP)
+        List<ToDo> todos;
+
+        if (request.getParameter("priority") != "" && request.getParameter("category") != "" && request.getParameter("priority") != null && request.getParameter("category") != null) {
+            todos = ToDoDAO.getSpecific(request.getParameter("priority"), request.getParameter("category"));
+        } else if (request.getParameter("priority") != "" && request.getParameter("priority") != null) {
+            todos = ToDoDAO.getByPrio(request.getParameter("priority"));
+        } else if (request.getParameter("category") != "" && request.getParameter("category") != null) {
+            todos = ToDoDAO.getByCategory(request.getParameter("category"));
+        } else {
+            todos = ToDoDAO.getAll();
+        }
         request.setAttribute("todos", todos);
 
-        // Weiterleiten an die JSP
         request.getRequestDispatcher("ToDoPlanner.jsp").forward(request, response);
     }
 
