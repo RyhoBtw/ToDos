@@ -2,17 +2,51 @@ package dao;
 
 import model.ToDo;
 
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ToDoDAO {
 
-    private static Connection getConnection() throws SQLException, ClassNotFoundException {
+    private static Connection getConnection() throws SQLException, ClassNotFoundException, URISyntaxException {
+        String dbPath = "database/toDos.db";
+        java.io.File dbFile = new java.io.File(dbPath);
+
+        java.io.File dbDir = dbFile.getParentFile();
+        if (!dbDir.exists()) {
+            dbDir.mkdirs();
+        }
+
         Class.forName("org.sqlite.JDBC");
-        String url = "jdbc:sqlite:/home/rhyo/Documents/Studium/webingeneering/ToDos/src/main/toDos.db";
-        return DriverManager.getConnection(url);
+        Connection connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
+
+        initializeDatabase(connection);
+
+        return connection;
     }
+
+    private static void initializeDatabase(Connection connection) throws SQLException {
+        String createTableSQL = """
+        CREATE TABLE IF NOT EXISTS todos (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            description TEXT,
+            priority TEXT,
+            category TEXT,
+            due_date TEXT,
+            status TEXT
+        );
+        """;
+
+        try (Statement statement = connection.createStatement()) {
+            // Execute the creation query
+            statement.execute(createTableSQL);
+        }
+    }
+
 
     public static void save(ToDo todo) {
         String sql = "INSERT INTO todos (title, priority, category, status) VALUES (?, ?, ?, ?)";
@@ -30,6 +64,8 @@ public class ToDoDAO {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -45,7 +81,7 @@ public class ToDoDAO {
             extractTodos(list, rs);
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
 
@@ -71,7 +107,7 @@ public class ToDoDAO {
                 return todo;
             }
 
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | URISyntaxException e) {
             e.printStackTrace();
         }
         return null;
@@ -90,7 +126,7 @@ public class ToDoDAO {
             extractTodos(list, rs);
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
         return list;
@@ -108,7 +144,7 @@ public class ToDoDAO {
             extractTodos(list, rs);
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
         return list;
@@ -127,7 +163,7 @@ public class ToDoDAO {
             extractTodos(list, rs);
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
         return list;
@@ -161,7 +197,7 @@ public class ToDoDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }
@@ -175,7 +211,7 @@ public class ToDoDAO {
             stmt.setInt(1, Integer.parseInt(id));
             stmt.executeUpdate();
 
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | URISyntaxException e) {
             e.printStackTrace();
         }
     }
@@ -191,7 +227,7 @@ public class ToDoDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }
