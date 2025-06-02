@@ -63,6 +63,7 @@
 									<div class="task-category">Category</div>
 									<div class="task-actions">Actions</div>
 								</li>
+								<!--TODO: logik muss in bean-->
 								<c:forEach var="todo" items="${todos}">
 									<c:if test="${todo.status == 'ToDo'}">
 										<li>
