@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -63,7 +63,6 @@
 									<div class="task-category">Category</div>
 									<div class="task-actions">Actions</div>
 								</li>
-								<!--TODO: logik muss in bean-->
 								<c:forEach var="todo" items="${todos}">
 									<c:if test="${todo.status == 'ToDo'}">
 										<li>
@@ -77,18 +76,25 @@
 												<div class="task-category">
 														${todo.category}
 												</div>
+																							
 												<!-- Container for buttons -->
 												<div class="task-actions">
 													<!-- Delete Button -->
-													<form action="todo" method="post" style="display: inline;">
-														<input type="hidden" name="delet" value="${todo.id}" />
-														<button type="submit" class="delete-task-btn">🗑️</button>
-													</form>
-													<!-- Done Button -->
 													<form action="markTodoDone" method="post" style="display: inline;">
 														<input type="hidden" name="todoId" value="${todo.id}" />
 														<button type="submit" class="done-btn">✓</button>
 													</form>
+													<!-- Menu Button -->
+													
+													<input type="hidden" name="todoId" value="${todo.id}" /> 
+													<div class="menu-container">
+														<button class="menu-btn" onclick="openDropDown(this)">⋮</button>
+														<div class="dropdown-menu">
+													        <div class="dropdown-item edit">Bearbeiten</div>
+													        <div class="dropdown-item delete">Löschen</div>
+														</div>
+													</div>
+												
 												</div>
 											</div>
 										</li>
@@ -158,7 +164,7 @@
 					<option value="High">High</option>
 					<option value="Medium">Medium</option>
 					<option value="Low">Low</option>
-				</select><br><br>
+				</select><br>
 
 				<label for="4">Category</label>
 				<input id="4" name="category" type="text" required placeholder="Category" list="options"/><br>
@@ -183,6 +189,7 @@
 			<button class="Help" onclick="window.location.href='Bedienungsanleitung.html'">?</button>
 			
 		</footer>
-		
+				
 	</body>
+	
 </html>
