@@ -557,7 +557,12 @@ body.dark-mode .task.done {
 }
 
 
-body.dark-mode .task button {
+body.dark-mode .done-btn {
+    background-color: #0080c0;
+    color: #fff;
+}
+
+body.dark-mode .delete-task-btn {
     background-color: #0080c0;
     color: #fff;
 }

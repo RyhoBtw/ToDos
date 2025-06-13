@@ -12,7 +12,7 @@ import java.util.Objects;
 public class ToDoDAO {
 
     private static Connection getConnection() throws SQLException, ClassNotFoundException, URISyntaxException {
-        String dbPath = "database/toDos.db";
+        String dbPath = "C:\\Users\\etber\\eclipse-workspace\\ToDoPlanner\\src\\main\\toDos.db";
         java.io.File dbFile = new java.io.File(dbPath);
 
         java.io.File dbDir = dbFile.getParentFile();
@@ -37,7 +37,8 @@ public class ToDoDAO {
             priority TEXT,
             category TEXT,
             due_date TEXT,
-            status TEXT
+            status TEXT,
+            user_id INTEGER
         );
         """;
 
@@ -49,13 +50,14 @@ public class ToDoDAO {
 
 
     public static void save(ToDo todo) {
-        String sql = "INSERT INTO todos (title, priority, category, status) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO todos (title, priority, category, status, user_id) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, todo.getTitle());
             stmt.setString(2, todo.getPriority());
             stmt.setString(3, todo.getCategory());
             stmt.setString(4, todo.getStatus());
+            stmt.setInt(5, todo.getUserID());
 
             System.out.println("Saved ToDo: " + todo.getTitle());
 
@@ -70,14 +72,18 @@ public class ToDoDAO {
     }
 
     // Alle ToDos abrufen
-    public static List<ToDo> getAll() {
+    public static List<ToDo> getAll(int id) {
         List<ToDo> list = new ArrayList<>();
-        String sql = "SELECT * FROM todos ORDER BY id DESC";
-
+        String sql = "SELECT * FROM todos WHERE user_id = ? ORDER BY id DESC";
+        
+   
         try (Connection conn = getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
+             PreparedStatement stmt = conn.prepareStatement(sql)){
+        	
+            stmt.setInt(1, id);
+        	
+            ResultSet rs = stmt.executeQuery();
+        	
             extractTodos(list, rs);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -104,6 +110,7 @@ public class ToDoDAO {
                 todo.setPriority(rs.getString("priority"));
                 todo.setCategory(rs.getString("category"));
                 todo.setStatus(rs.getString("status"));
+                todo.setUserID(rs.getInt("user_id"));
                 return todo;
             }
 
@@ -177,6 +184,7 @@ public class ToDoDAO {
             todo.setPriority(rs.getString("priority"));
             todo.setCategory(rs.getString("category"));
             todo.setStatus(rs.getString("status"));
+            todo.setUserID(rs.getInt("user_id"));
 
             list.add(todo);
         }
