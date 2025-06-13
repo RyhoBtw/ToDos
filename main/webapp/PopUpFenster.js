@@ -47,44 +47,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-function openDropDown(button) {
-           const dropdown = button.nextElementSibling;
-           const isOpen = dropdown.classList.contains('show');
-           
-           // Alle anderen Dropdowns schließen
-           document.querySelectorAll('.dropdown-menu').forEach(menu => {
-               menu.classList.remove('show');
-           });
-           
-           // Aktuelles Dropdown öffnen/schließen
-           if (!isOpen) {
-               dropdown.classList.add('show');
-           }
-   }
+// Toggelt 3 Punkte Menü
+function toggleMenu(button) {
+            const menu = button.nextElementSibling;
+            const isOpen = menu.classList.contains('show');
+            
+            // Alle anderen Menüs schließen
+            document.querySelectorAll('.dropdown-menu').forEach(m => {
+                m.classList.remove('show');
+            });
+            
+            // Aktuelles Menü togglen
+            if (!isOpen) {
+                menu.classList.add('show');
+            }
+}
 
+// Schließt 3 Punkte Menü mit Klick außerhalb
+document.addEventListener('click', function(event) {
+            if (!event.target.closest('.menu-container')) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            }
+        });
+		
 // ToDo bearbeiten
-function editTodo(id) {
-	    console.log('ToDo bearbeiten:', id);
-	    alert(`ToDo ${id} bearbeiten - Hier würde das Bearbeitungsformular geöffnet`);
-	       
-	    // Dropdown schließen
-	    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-	    	menu.classList.remove('show');
-		});
+function editTodo(button) {
+            const card = button.closest('.todo-card');
+            const title = card.querySelector('.todo-title').textContent;
+            const description = card.querySelector('.todo-description').textContent;
+            
+            alert(`Bearbeiten: ${title}\n\nBeschreibung: ${description}\n\n(Hier würde normalerweise ein Bearbeitungsformular geöffnet)`);
+            
+            // Menü schließen
+            button.closest('.dropdown-menu').classList.remove('show');
 }
 
-   // ToDo löschen
-function deleteTodo(id) {
-	   if (confirm('Möchten Sie dieses ToDo wirklich löschen?')) {
-           console.log('ToDo löschen:', id);
-           // Hier würdest du die Löschlogik implementieren
-           // Zum Beispiel: removeToDoFromDOM(id);
-           alert(`ToDo ${id} wurde gelöscht`);
-       }
-       
-       // Dropdown schließen
-       document.querySelectorAll('.dropdown-menu').forEach(menu => {
-           menu.classList.remove('show');
-		});
-}
+
 

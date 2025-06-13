@@ -88,11 +88,14 @@
 													
 													<input type="hidden" name="todoId" value="${todo.id}" /> 
 													<div class="menu-container">
-														<button class="menu-btn" onclick="openDropDown(this)">⋮</button>
+														<button class="menu-button" onclick="toggleMenu(this)">⋮</button>
 														<div class="dropdown-menu">
-													        <div class="dropdown-item edit">Bearbeiten</div>
-													        <div class="dropdown-item delete">Löschen</div>
-														</div>
+									                        <button class="menu-item edit" onclick="editTodo(this)"></button>
+									                        <form action="todo" method="post" style="display: inline;">
+																<input type="hidden" name="delet" value="${todo.id}" />
+																<button type="submit" class="menu-item delete"></button>
+															</form>
+									                    </div>
 													</div>
 												
 												</div>
