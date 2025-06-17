@@ -14,6 +14,8 @@ import java.util.List;
 @WebServlet("/todo")
 public class ToDoServlet extends HttpServlet {
 	
+	private LoginServlet servlet = new LoginServlet();
+	
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -19,6 +19,7 @@ public class LoginServlet extends HttpServlet {
 	private int i = 0;
 	private List<User> users = new ArrayList<>();
 	
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -49,6 +50,7 @@ public class LoginServlet extends HttpServlet {
 		response.sendRedirect("todo");
 	}
 	
-	
-	
+	public List<User> getUsers(){
+		return users;
+	}
 }

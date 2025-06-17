@@ -23,7 +23,7 @@ public class User implements Serializable {
     public int getId() {
         return id;
     }
-    
+        
     public void setId(int id) {
         this.id = id;
     }
@@ -42,6 +42,10 @@ public class User implements Serializable {
     
     public void setNachname(String nachname) {
     	this.nachname = nachname;
+    }
+    
+    public String getName() {
+    	return vorname+" "+nachname;
     }
     
     @Override

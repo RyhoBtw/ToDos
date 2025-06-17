@@ -1,5 +1,24 @@
 let i = 0;
+// Tab-ID generieren und an Backend senden
+let tabId = sessionStorage.getItem('tabId') || 
+           'tab_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+sessionStorage.setItem('tabId', tabId);
 
+// Bei allen AJAX/Form-Requests Tab-ID mitschicken
+function addTodo() {
+    const form = document.getElementById('todoForm');
+    const formData = new FormData(form);
+    formData.append('tabId', tabId); // 🔥 Tab-ID hinzufügen
+    
+    fetch('/todo', {
+        method: 'POST',
+        body: formData
+    }).then(response => {
+        if (response.ok) {
+            loadTodos();
+        }
+    });
+}
 function openPopUp() {
 	document.getElementById('myModal').showModal();
 }
@@ -13,12 +32,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('darkMode') === 'enabled') {
         document.body.classList.add('dark-mode');
     }
-	
-	if (window.location.pathname.endsWith("ToDoPlanner.jsp")) {
-	        // Nur wenn die Seite "todoplanner.jsp" geladen ist, weiterleiten
-	        window.location.href = "todo";
-	}
-	
+		
 });
 
 function toggleDarkMode() {
