@@ -14,13 +14,14 @@
 	</head>
 	<body>
 		<header>
-			<h1>ToDo Planner</h1>
+            <a href="#" class="logo">ToDoPlanner</a>
 			<div class="header-buttons">
 				<button id="darkModeToggle" onclick="toggleDarkMode()">🌙</button>
 				<button class="add-task-btn" type="button" onclick="openPopUp()">＋ New Task</button>
 			</div>
 		</header>
 
+		<section class="content">
 
 		<section class="filter-bar">
 			<form method="get" action="todo" style="display: flex; gap: 1rem; align-items: center; margin: 0;">
@@ -156,6 +157,8 @@
 				</div>
 			</section>
 		</main>
+		
+		</section>
 		<dialog id="myModal">
 			<h2>New ToDo</h2>
 			<form class="add-task-dialog" action="todo" method="post">
@@ -189,8 +192,10 @@
 		
 		<footer>
 			<a class="Impressum" href="Impressum_Datenschutz.html">Impressum & Datenschutzerklärung</a>
+			<div class="container">
+            	<p>&copy; 2025 ToDoPlanner. Made with ❤️ für produktive Menschen.</p>
+			</div>
 			<button class="Help" onclick="window.location.href='Bedienungsanleitung.html'">?</button>
-			
 		</footer>
 				
 	</body>

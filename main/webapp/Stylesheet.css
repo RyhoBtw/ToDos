@@ -5,22 +5,52 @@
 }
 
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #f2f2f2;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+   
+}
+
+.content {
+	padding: 20px 0px 70px 20px;
+    background: rgba(255, 255, 255, 0.95);
+    
 }
 /* Header layout */
 header {
-    display: flex;
+	display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #f5f5f5;
-    border-bottom: 1px solid #ddd;
+    padding: 20px 50px;
+    z-index: 100;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
 }
 
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo::before {
+    content: "✓";
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+    color: black;
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
 ul, li {
     list-style: none;
     margin: 0;
@@ -92,7 +122,7 @@ main {
     flex: 1;
     display: flex;
     justify-content: space-around;
-    padding: 2rem;
+    
 }
 
 .task-column {
@@ -111,7 +141,7 @@ main {
     border-radius: 8px;
     padding: 1rem;
     box-shadow: 0 1px 5px rgba(0,0,0,0.05);
-    min-height: 300px;
+    min-height: 350px;
     overflow-y: auto;
     max-height: 80%;
 }
@@ -371,13 +401,8 @@ form select {
 .filters select {
     padding: 0.4rem 0.6rem;
     border-radius: 5px;
-
-/* Dark mode header background */
-body.dark-mode header {
-    background-color: #1e1e1e;
-    border-bottom: 1px solid #333;
-}border: 1px solid #ccc;
 }
+/* Dark mode header background */
 
 .quick-add {
     display: flex;
@@ -438,6 +463,8 @@ body.dark-mode header {
     gap: 1rem; /* Adds spacing between form elements */
     align-items: center; /* Vertically center items */
     flex-wrap: nowrap; /* Prevent wrapping to the next line */
+    padding: 0 0 20px 20px;
+    
 }
 
 /* Make sure the <form> spans only the space it needs */
@@ -499,22 +526,10 @@ body.dark-mode header {
 /* Dark mode styles */
 /* 🌙 Dark Mode Styles – Gleiches Design, nur dunkler */
 
-body.dark-mode {
-    background-color: #1a1a1a;
-    color: #eaeaea;
+
+body.dark-mode .content {
+	 background-color: black;
 }
-
-body.dark-mode header {
-    background-color: #2a2a2a;
-    border-bottom: 1px solid #444;
-}
-
-body.dark-mode footer {
-    background-color: #2a2a2a;
-    border-bottom: 1px solid #444;
-}
-
-
 body.dark-mode #darkModeToggle {
     padding: 0.5rem 1rem;
     background-color: white;
@@ -612,24 +627,29 @@ body.dark-mode .button-group button[type="button"] {
     background-color: #777;
 }
 
-body.dark-mode .Help {
-	background-color: white;
-	color: black;
-}
-
 
 footer {
+	background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 40px 0;
+    text-align: center;
+    color: white;
+    margin-bottom: 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #f5f5f5;
-    border-bottom: 1px solid #ddd;
 }
+
+.container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+  }
 
 .Impressum {
 	font-size: 0.8em;
-	color: #4CAF50;
+	color: black;
+	padding: 0 20px;
 }
 
 .Help {
@@ -646,6 +666,7 @@ footer {
     justify-content: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s;
+    margin: 0 20px;
 }
 
 .Help:hover {
