@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		<header>
-            <a href="#" class="logo">ToDoPlanner</a>
+            <a class="logo">ToDoPlanner</a>
 			<div class="header-buttons">
 				<button id="darkModeToggle" onclick="toggleDarkMode()">🌙</button>
 				<button class="add-task-btn" type="button" onclick="openPopUp()">＋ New Task</button>
@@ -29,10 +29,11 @@
 				<div class="filter">
 					<label for="categoryFilter">Category:</label>
 					<select id="categoryFilter" name="category" class="pretty-select" onchange="this.form.submit()">
-						<option value="" ${param.category == "any" || param.category == null ? "selected" : ""}>All</option>
-						<option value="Homework" ${"Homework".equals(param.category) ? "selected" : ""}>Homework</option>
-						<option value="Chores" ${"Chores".equals(param.category) ? "selected" : ""}>Chores</option>
-						<option value="Other" ${"Other".equals(param.category) ? "selected" : ""}>Other</option>
+					    <option value="" ${param.category == null || param.category == 'any' ? 'selected' : ''}>All</option>
+					
+					    <c:forEach var="cat" items="${categories}">
+					        <option value="${cat}" ${cat == param.category ? 'selected' : ''}>${cat}</option>
+					    </c:forEach>
 					</select>
 				</div>
 

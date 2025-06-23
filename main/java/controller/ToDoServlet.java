@@ -22,6 +22,9 @@ public class ToDoServlet extends HttpServlet {
 
         List<ToDo> todos;
         User user = (User) request.getSession().getAttribute("user");
+        
+        List<String> categories = ToDoDAO.getAllCategories();  // z. B. ["Homework", "Chores", "Work", "Personal"]
+        request.setAttribute("categories", categories);
 
         if (request.getParameter("priority") != "" && request.getParameter("category") != "" && request.getParameter("priority") != null && request.getParameter("category") != null) {
             todos = ToDoDAO.getSpecific(request.getParameter("priority"), request.getParameter("category"));

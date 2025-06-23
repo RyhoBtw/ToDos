@@ -20,7 +20,7 @@
     </div>
 
     <header>
-        <nav class="container">
+        <nav>
             <a href="#" class="logo">ToDoPlanner</a>
         </nav>
     </header>

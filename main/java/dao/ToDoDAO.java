@@ -175,6 +175,30 @@ public class ToDoDAO {
         }
         return list;
     }
+    
+    public static List<String> getAllCategories(){
+    	List<String> list = new ArrayList<>();
+    	String sql = "SELECT DISTINCT category FROM todos";
+    	
+    	try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql)){
+           	
+                ResultSet rs = stmt.executeQuery();
+                
+                while (rs.next()) {
+                    String category = rs.getString("category");
+                    list.add(category);
+                }
+
+                
+           } catch (SQLException e) {
+               e.printStackTrace();
+           } catch (ClassNotFoundException | URISyntaxException e) {
+               throw new RuntimeException(e);
+           }
+
+           return list;
+    }
 
     private static void extractTodos(List<ToDo> list, ResultSet rs) throws SQLException {
         while (rs.next()) {

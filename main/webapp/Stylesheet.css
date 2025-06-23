@@ -12,7 +12,7 @@ body {
 }
 
 .content {
-	padding: 20px 0px 70px 20px;
+	padding: 20px 0px 0vh 20px;
     background: rgba(255, 255, 255, 0.95);
     
 }
@@ -42,7 +42,7 @@ header {
 .logo::before {
     content: "✓";
     background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-    color: black;
+    color: rgb(255, 255, 255);
     width: 35px;
     height: 35px;
     border-radius: 8px;
@@ -118,11 +118,8 @@ header h1 {
     color: #333;
 }
 
-main {
-    flex: 1;
-    display: flex;
-    justify-content: space-around;
-    
+main {   
+    display: flex;     
 }
 
 .task-column {
@@ -141,9 +138,12 @@ main {
     border-radius: 8px;
     padding: 1rem;
     box-shadow: 0 1px 5px rgba(0,0,0,0.05);
-    min-height: 350px;
+    min-height: 500px;
     overflow-y: auto;
-    max-height: 80%;
+    max-height: 80%;  
+    flex: 1;
+    margin: 0 1rem; 
+    margin-bottom: 12.5vh;
 }
 
 body.dark-mode .quick-add-input {
@@ -739,7 +739,7 @@ footer {
 }
 
 .menu-item:hover {
-    background-color: #f5f5f5;
+    background-color: rgb(192, 192, 192);
 }
 
 .menu-item.edit {
