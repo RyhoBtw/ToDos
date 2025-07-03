@@ -31,7 +31,7 @@
                 <h1>Organisiere dein Leben</h1>
                 <p>Mit ToDoPlanner behältst du den Überblick über alle deine Aufgaben. Elegant, intuitiv und kraftvoll - so wie Produktivität sein sollte.</p>
                 <p>Erstelle einfach neue ToDo-Cards und organisiere sie nach ihrer Kategorie oder Priorität - so weißt du immer genau was als Erstes erledigt werden muss.</p>
-                <a href="/ToDoPlanner/Login.jsp" class="cta-button">Jetzt starten</a>
+                <a href="Login.jsp" class="cta-button">Jetzt starten</a>
             </div>
         </div>
     </section>
