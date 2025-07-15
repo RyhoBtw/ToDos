@@ -5,10 +5,11 @@ import java.util.List;
 import dao.ToDoDAO;
 
 public class ListToDos{
-	User user;
-	List <ToDo> todos;
-	String priority;
-	String category;
+	private User user;
+	private List <ToDo> todos;
+	private String priority;
+	private String category;
+	private String property;
 	public ListToDos() {
 		this.user=null;
 		this.todos=null;
@@ -22,29 +23,34 @@ public class ListToDos{
 	public User getUser() {
 		return this.user;
 	}
-	public void setPrio(String priority) {
-		
-		this.priority=priority;
-	}
+	
 	public void setCategory(String kategorie) {
 		this.category=kategorie;
 	}
-	public List <ToDo> getTodos(){
-		if (this.user==null ) {
-			return null;
-		}
-		List <String> kategorien=ToDoDAO.getAllCategories();
-		if (priority != "" && category != "" && priority != null && category != null) {
-            todos = ToDoDAO.getSpecific(priority,category);
-        } else if (priority != "" && priority != null) {
-            todos = ToDoDAO.getByPrio(priority);
-        } else if (category != "" && category != null) {
-            todos = ToDoDAO.getByCategory(category);
-        } else {
-            todos = ToDoDAO.getAll(user.getId());
-        }
-		
-		return todos;
-	}
 	
+	public List<ToDo> getTodos() {
+	    if (this.user == null) return null;
+
+	    boolean hasPriority = priority != null && !priority.equals("any");
+	    boolean hasCategory = category != null && !category.equals("any");
+
+
+	    if (hasPriority && hasCategory) {
+	        todos = ToDoDAO.getSpecific(priority, category);
+	    } else if (hasPriority) {
+	        todos = ToDoDAO.getByPrio(priority);
+	    } else if (hasCategory) {
+	        todos = ToDoDAO.getByCategory(category);
+	    } else {
+	        todos = ToDoDAO.getAll(user.getId());
+	    }
+
+	    return todos;
+	}
+
+	
+	public void setPrio(String priority) {
+	    this.priority = priority;
+	}
+
 }

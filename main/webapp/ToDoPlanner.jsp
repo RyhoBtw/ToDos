@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="model.User" %>
 
 <!DOCTYPE html>
 <html>
@@ -13,6 +14,14 @@
 	<title>ToDoPlanner</title>
 	</head>
 	<body>
+	<jsp:useBean id="listToDos" class="model.ListToDos" scope="session" />
+<jsp:setProperty name="listToDos" property="category" param="category" />
+<jsp:setProperty name="listToDos" property="prio" param="priority" />
+<jsp:setProperty name="listToDos" property="user" value="${sessionScope.user}" />
+
+
+
+
 		<header>
             <a class="logo">ToDoPlanner</a>
 			<div class="header-buttons">
@@ -24,12 +33,13 @@
 		<section class="content">
 
 		<section class="filter-bar">
-			<form method="get" action="todo" style="display: flex; gap: 1rem; align-items: center; margin: 0;">
+			<form  style="display: flex; gap: 1rem; align-items: center; margin: 0;">
 				<!-- Category Filter -->
 				<div class="filter">
 					<label for="categoryFilter">Category:</label>
 					<select id="categoryFilter" name="category" class="pretty-select" onchange="this.form.submit()">
-					    <option value="" ${param.category == null || param.category == 'any' ? 'selected' : ''}>All</option>
+					<option value="any" ${param.category == 'any' || param.category == null ? 'selected' : ''}>All</option>
+
 					
 					    <c:forEach var="cat" items="${categories}">
 					        <option value="${cat}" ${cat == param.category ? 'selected' : ''}>${cat}</option>
@@ -41,7 +51,10 @@
 				<div class="filter">
 					<label for="priorityFilter">Priority:</label>
 					<select id="priorityFilter" name="priority" class="pretty-select" onchange="this.form.submit()">
-						<option value="" ${param.priority == "any" || param.priority == null ? "selected" : ""}>All</option>
+						<option value="any" ${param.priority == 'any' || param.priority == null ? 'selected' : ''}>All</option>
+
+
+
 						<option value="High" ${"High".equals(param.priority) ? "selected" : ""}>High</option>
 						<option value="Medium" ${"Medium".equals(param.priority) ? "selected" : ""}>Medium</option>
 						<option value="Low" ${"Low".equals(param.priority) ? "selected" : ""}>Low</option>
@@ -65,7 +78,7 @@
 									<div class="task-category">Category</div>
 									<div class="task-actions">Actions</div>
 								</li>
-								<c:forEach var="todo" items="${todos}">
+								<c:forEach var="todo" items="${listToDos.todos}">
 									<c:if test="${todo.status == 'ToDo'}">
 										<li>
 											<div class="task">
@@ -129,7 +142,8 @@
 								<div class="task-category">Category</div>
 								<div class="task-actions">Actions</div>
 							</li>
-							<c:forEach var="todo" items="${todos}">
+							<c:forEach var="todo" items="${listToDos.todos}">
+
 								<c:if test="${todo.status == 'Done'}">
 								<li>
 									<div class="task">

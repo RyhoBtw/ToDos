@@ -16,30 +16,7 @@ public class ToDoServlet extends HttpServlet {
 	
 	private LoginServlet servlet = new LoginServlet();
 	
-	@Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        List<ToDo> todos;
-        User user = (User) request.getSession().getAttribute("user");
-        
-        List<String> categories = ToDoDAO.getAllCategories();  // z. B. ["Homework", "Chores", "Work", "Personal"]
-        request.setAttribute("categories", categories);
-
-        if (request.getParameter("priority") != "" && request.getParameter("category") != "" && request.getParameter("priority") != null && request.getParameter("category") != null) {
-            todos = ToDoDAO.getSpecific(request.getParameter("priority"), request.getParameter("category"));
-        } else if (request.getParameter("priority") != "" && request.getParameter("priority") != null) {
-            todos = ToDoDAO.getByPrio(request.getParameter("priority"));
-        } else if (request.getParameter("category") != "" && request.getParameter("category") != null) {
-            todos = ToDoDAO.getByCategory(request.getParameter("category"));
-        } else {
-            todos = ToDoDAO.getAll(user.getId());
-        }
-        request.setAttribute("todos", todos);
-
-        request.getRequestDispatcher("ToDoPlanner.jsp").forward(request, response);
-    }
-
+	
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -71,5 +48,7 @@ public class ToDoServlet extends HttpServlet {
         // Weiterleiten auf doGet (Liste aktualisieren)
         response.sendRedirect("todo");
     }
+   
+
 }
 
