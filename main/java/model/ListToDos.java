@@ -11,6 +11,7 @@ public class ListToDos{
 	private String priority;
 	private String category;
 	private String property;
+	
 	public ListToDos() {
 		this.user=null;
 		this.todos=null;

@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class ToDo implements Serializable {
@@ -8,7 +9,7 @@ public class ToDo implements Serializable {
     private String title;
     private String category;
     private String priority;
-    private LocalDate dueDate;
+    private String dueDate;
     private String status;
     private int userID;
     
@@ -16,7 +17,7 @@ public class ToDo implements Serializable {
     public ToDo() {
     }
     
-    public ToDo(int id, String title, String category, String priority, LocalDate dueDate, String status, int userID) {
+    public ToDo(int id, String title, String category, String priority, String dueDate, String status, int userID) {
         this.id = id;
         this.title = title;
         this.category = category;
@@ -59,12 +60,12 @@ public class ToDo implements Serializable {
         this.priority = priority;
     }
     
-    public LocalDate getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
     
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
+    public void setDueDate(String dueDate2) {
+        this.dueDate = dueDate2;
     }
     
     public String getStatus() {

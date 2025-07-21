@@ -55,14 +55,15 @@ public class ToDoDAO {
 
     // Do wird a neues ToDo gspeichert – also nei in die Datenbank gschrieba
     public static void save(ToDo todo) {
-        String sql = "INSERT INTO todos (title, priority, category, status, user_id) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO todos (title, priority, category, status, due_date, user_id) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, todo.getTitle());
             stmt.setString(2, todo.getPriority());
             stmt.setString(3, todo.getCategory());
             stmt.setString(4, todo.getStatus());
-            stmt.setInt(5, todo.getUserID());
+            stmt.setString(5, todo.getDueDate());
+            stmt.setInt(6, todo.getUserID());
 
             System.out.println("Saved ToDo: " + todo.getTitle());
 
@@ -107,6 +108,7 @@ public class ToDoDAO {
                 todo.setPriority(rs.getString("priority"));
                 todo.setCategory(rs.getString("category"));
                 todo.setStatus(rs.getString("status"));
+                todo.setDueDate(rs.getString("due_date"));
                 todo.setUserID(rs.getInt("user_id"));
                 return todo; // Wenn mr ebbes findat, geb mr’s zruck
             }
@@ -204,6 +206,7 @@ public class ToDoDAO {
             todo.setPriority(rs.getString("priority"));
             todo.setCategory(rs.getString("category"));
             todo.setStatus(rs.getString("status"));
+            todo.setDueDate(rs.getString("due_date"));
             todo.setUserID(rs.getInt("user_id"));
 
             list.add(todo);
@@ -212,15 +215,16 @@ public class ToDoDAO {
 
     // Ändert en ToDo – z.B. wenn ma was vergesse hot
     public static void update(ToDo todo) {
-        String sql = "UPDATE todos SET title = ?, priority = ?, category = ?, status = ? WHERE id = ?";
+        String sql = "UPDATE todos SET title = ?, priority = ?, category = ?, due_Date = ?, status = ? WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, todo.getTitle());
             stmt.setString(2, todo.getPriority());
             stmt.setString(3, todo.getCategory());
-            stmt.setString(4, todo.getStatus());
-            stmt.setInt(5, todo.getId());
+            stmt.setString(4, todo.getDueDate());
+            stmt.setString(5, todo.getStatus());
+            stmt.setInt(6, todo.getId());
 
             stmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException | URISyntaxException e) {

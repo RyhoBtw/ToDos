@@ -2,8 +2,8 @@ function openPopUp() {
 	document.getElementById('myModal').showModal();
 }
 
-function closePopUp() {
-	document.getElementById('myModal').close();
+function closePopUp(id) {
+	document.getElementById(id).close();
 }
 
 // Beim Laden der Seite prüfen, ob Dark Mode aktiviert war
@@ -66,15 +66,16 @@ document.addEventListener('click', function(event) {
         });
 		
 // ToDo bearbeiten
-function editTodo(button) {
-            const card = button.closest('.todo-card');
-            const title = card.querySelector('.todo-title').textContent;
-            const description = card.querySelector('.todo-description').textContent;
-            
-            alert(`Bearbeiten: ${title}\n\nBeschreibung: ${description}\n\n(Hier würde normalerweise ein Bearbeitungsformular geöffnet)`);
-            
-            // Menü schließen
-            button.closest('.dropdown-menu').classList.remove('show');
+function editTodo(id, title, priority, category, enddate) {
+
+	
+	document.getElementById("modalId").value = id;
+	document.getElementById("1C").value = title;
+	document.getElementById("3C").value = priority;
+	document.getElementById("4C").value = category;
+	document.getElementById("5C").value = enddate;
+	
+	document.getElementById('myModalChange').showModal();
 }
 
 

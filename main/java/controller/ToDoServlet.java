@@ -9,6 +9,7 @@ import model.User;
 import dao.ToDoDAO;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 @WebServlet("/todo")
@@ -27,6 +28,8 @@ public class ToDoServlet extends HttpServlet {
         String category = request.getParameter("category");
         if (category == null) category = "Other";
         String status = "ToDo";
+        String dueDate = request.getParameter("enddate");
+        if(dueDate == null) dueDate = LocalDate.now().toString();
        
         if (request.getParameter("delet") != null) {
             ToDoDAO.delete(request.getParameter("delet"));
@@ -37,6 +40,7 @@ public class ToDoServlet extends HttpServlet {
             todo.setPriority(priority);
             todo.setCategory(category);
             todo.setStatus(status);
+            todo.setDueDate(dueDate);
             todo.setUserID(user.getId());
            
             // In der Datenbank speichern
