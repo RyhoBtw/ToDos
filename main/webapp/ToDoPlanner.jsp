@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="model.User" %>
 
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,10 +16,10 @@
 	</head>
 	<body>
 	<jsp:useBean id="listToDos" class="model.ListToDos" scope="session" />
-<jsp:setProperty name="listToDos" property="category" param="category" />
-<jsp:setProperty name="listToDos" property="prio" param="priority" />
-<jsp:setProperty name="listToDos" property="user" value="${sessionScope.user}" />
-
+	<jsp:setProperty name="listToDos" property="category" param="category" />
+	<jsp:setProperty name="listToDos" property="prio" param="priority" />
+	<jsp:setProperty name="listToDos" property="user" value="${sessionScope.user}" />
+	
 
 
 
@@ -33,7 +34,7 @@
 		<section class="content">
 
 		<section class="filter-bar">
-			<form  style="display: flex; gap: 1rem; align-items: center; margin: 0;">
+			<form  style="display: flex; gap: 1rem; align-items: center; margin: 0;" action="todo" method="post">
 				<!-- Category Filter -->
 				<div class="filter">
 					<label for="categoryFilter">Category:</label>

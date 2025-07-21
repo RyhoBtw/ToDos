@@ -7,6 +7,7 @@ import dao.ToDoDAO;
 public class ListToDos{
 	private User user;
 	private List <ToDo> todos;
+	private List <String> categories;
 	private String priority;
 	private String category;
 	private String property;
@@ -15,6 +16,7 @@ public class ListToDos{
 		this.todos=null;
 		this.priority=null;
 		this.category=null;
+		this.categories=null;
 	}
 	
 	public void setUser(User user) {
@@ -27,7 +29,7 @@ public class ListToDos{
 	public void setCategory(String kategorie) {
 		this.category=kategorie;
 	}
-	
+		
 	public List<ToDo> getTodos() {
 	    if (this.user == null) return null;
 
@@ -36,11 +38,11 @@ public class ListToDos{
 
 
 	    if (hasPriority && hasCategory) {
-	        todos = ToDoDAO.getSpecific(priority, category);
+	        todos = ToDoDAO.getSpecific(priority, category, user.getId());
 	    } else if (hasPriority) {
-	        todos = ToDoDAO.getByPrio(priority);
+	        todos = ToDoDAO.getByPrio(priority, user.getId());
 	    } else if (hasCategory) {
-	        todos = ToDoDAO.getByCategory(category);
+	        todos = ToDoDAO.getByCategory(category, user.getId());
 	    } else {
 	        todos = ToDoDAO.getAll(user.getId());
 	    }

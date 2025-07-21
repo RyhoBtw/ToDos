@@ -14,8 +14,6 @@ import java.util.List;
 @WebServlet("/todo")
 public class ToDoServlet extends HttpServlet {
 	
-	private LoginServlet servlet = new LoginServlet();
-	
 	
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -45,8 +43,8 @@ public class ToDoServlet extends HttpServlet {
             ToDoDAO.save(todo);
         }
 
-        // Weiterleiten auf doGet (Liste aktualisieren)
-        response.sendRedirect("todo");
+        // Weiterleiten zur ToDo-Seite
+        request.getRequestDispatcher("ToDoPlanner.jsp").forward(request, response);
     }
    
 

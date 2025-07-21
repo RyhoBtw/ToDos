@@ -118,13 +118,14 @@ public class ToDoDAO {
     }
 
     // Filtert ToDos na Prio – wenn ma’s halt eilig hat
-    public static List<ToDo> getByPrio(String priority) {
+    public static List<ToDo> getByPrio(String priority, int user) {
         List<ToDo> list = new ArrayList<>();
-        String sql = "SELECT * FROM todos WHERE priority = ?";
+        String sql = "SELECT * FROM todos WHERE priority = ? AND user_id =?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, priority);
+            stmt.setInt(2, user);
             ResultSet rs = stmt.executeQuery();
 
             extractTodos(list, rs);
@@ -135,13 +136,14 @@ public class ToDoDAO {
     }
 
     // Filtert na Kategorie – z.B. "Garten", "Schaffa", "Sonstigs"
-    public static List<ToDo> getByCategory(String category) {
+    public static List<ToDo> getByCategory(String category, int user) {
         List<ToDo> list = new ArrayList<>();
-        String sql = "SELECT * FROM todos WHERE category = ?";
+        String sql = "SELECT * FROM todos WHERE category = ? AND user_id = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, category);
+            stmt.setInt(2, user);
             ResultSet rs = stmt.executeQuery();
 
             extractTodos(list, rs);
@@ -152,14 +154,15 @@ public class ToDoDAO {
     }
 
     // Kombiniert Prio und Kategorie – doppelt hält besser
-    public static List<ToDo> getSpecific(String priority, String category) {
+    public static List<ToDo> getSpecific(String priority, String category, int user) {
         List<ToDo> list = new ArrayList<>();
-        String sql = "SELECT * FROM todos WHERE priority = ? AND category = ?";
+        String sql = "SELECT * FROM todos WHERE priority = ? AND category = ? AND user_id = ?";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, priority);
             stmt.setString(2, category);
+            stmt.setInt(3, user);
             ResultSet rs = stmt.executeQuery();
 
             extractTodos(list, rs);
@@ -170,13 +173,15 @@ public class ToDoDAO {
     }
     
     // Holt alle Kategorie – halt für die Übersicht
-    public static List<String> getAllCategories(){
+    public static List<String> getAllCategories(int user){
     	List<String> list = new ArrayList<>();
-    	String sql = "SELECT DISTINCT category FROM todos";
+    	String sql = "SELECT DISTINCT category FROM todos WHERE user_id = ?";
     	
     	try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)){
-                ResultSet rs = stmt.executeQuery();
+    		
+    			stmt.setInt(1,  user);
+    			ResultSet rs = stmt.executeQuery();
                 
                 while (rs.next()) {
                     String category = rs.getString("category");

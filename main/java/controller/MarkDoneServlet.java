@@ -20,6 +20,7 @@ public class MarkDoneServlet extends HttpServlet {
 
         ToDoDAO.markAsDone(todoId);
 
-        response.sendRedirect("todo");
+        // Weiterleiten zur ToDo-Seite
+        request.getRequestDispatcher("ToDoPlanner.jsp").forward(request, response);
     }
 }

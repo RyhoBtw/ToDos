@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
         ListToDos listToDos = new ListToDos();
         listToDos.setUser(user);
         session.setAttribute("listToDos", listToDos);
-        List<String> categories = ToDoDAO.getAllCategories();
+        List<String> categories = ToDoDAO.getAllCategories(user.getId());
         request.getSession().setAttribute("categories", categories);
 
 
