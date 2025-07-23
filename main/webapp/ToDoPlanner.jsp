@@ -9,7 +9,8 @@
 <html>
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="Stylesheet.css">
+	<link rel="stylesheet" href="Stylesheets/Stylesheet.css">
+	<link rel="stylesheet" href="Stylesheets/Darkmode.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<script src="ToDoPlannerScript.js"></script>
 	<title>ToDoPlanner</title>
@@ -24,7 +25,7 @@
 		<jsp:setProperty name="listToDos" property="user" value="${sessionScope.user}" />
 	
 		<header>
-	           <a class="logo">ToDoPlanner</a>
+	           <img src="LOGO.png">
 			<div class="header-buttons">
 				<button id="darkModeToggle" onclick="toggleDarkMode()">🌙</button>
 				<button class="add-task-btn" type="button" onclick="openPopUp()">＋ New Task</button>
@@ -78,7 +79,6 @@
 									<div class="task-priority">Priority</div>
 									<div class="task-category">Category</div>
 									<div class="task-category">DueDate</div>
-									<div class="task-actions">Actions</div>
 								</li>
 								<c:forEach var="todo" items="${listToDos.todos}">
 									<c:if test="${todo.status == 'ToDo'}">
@@ -147,7 +147,6 @@
 								<div class="task-title">Name</div>
 								<div class="task-priority">Priority</div>
 								<div class="task-category">Category</div>
-								<div class="task-actions">Actions</div>
 							</li>
 							<c:forEach var="todo" items="${listToDos.todos}">
 	

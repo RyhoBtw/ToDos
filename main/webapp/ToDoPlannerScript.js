@@ -14,6 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		
 });
 
+// Dark Mode aktivieren und Zustand speichern
 function toggleDarkMode() {
     const element = document.body;
     element.classList.toggle("dark-mode");
@@ -25,7 +26,8 @@ function toggleDarkMode() {
         localStorage.setItem('darkMode', 'disabled');
     }
 }
-	
+
+// Aktuelles Datum yy-mm-dd abfragen, damit dieses automatisch als Voreinstellung bei Enddate eingetragen wird
 document.addEventListener("DOMContentLoaded", function () {
 
   const dateInput = document.getElementById("5");
@@ -77,6 +79,3 @@ function editTodo(id, title, priority, category, enddate) {
 	
 	document.getElementById('myModalChange').showModal();
 }
-
-
-

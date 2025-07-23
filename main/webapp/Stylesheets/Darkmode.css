@@ -1,0 +1,153 @@
+header.dark-mode #darkModeToggle {
+    padding: 0.5rem 1rem;
+    background: #f2f2f2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+header.dark-mode #darkModeToggle:hover {
+    background-color: #777;
+}
+
+/* Dark Mode Button Styling */
+#darkModeToggle {
+    padding: 0.5rem 1rem;
+    background-color: #2d2d2d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#darkModeToggle:hover {
+    background-color: #444;
+}
+
+
+body.dark-mode .task-header {
+    background: #3a3a3a; /* Dark mode background color */
+    color: #eaeaea; /* High contrast for dark mode text */
+}
+
+body.dark-mode .task {
+    background: #3a3a3a;
+    color: #fff;
+    border: 1px solid #666;
+}
+
+body.dark-mode .quick-add-input {
+    background: #444;
+    color: #ddd;
+    border: 1px solid #666;
+}
+
+body.dark-mode .quick-add-input:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+body.dark-mode .content {
+	 background-color: black;
+}
+body.dark-mode #darkModeToggle {
+    padding: 0.5rem 1rem;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .add-task-btn {
+    padding: 0.5rem 1rem;
+    background-color: #0080c0;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode label {
+    color: #eaeaea;
+}
+
+body.dark-mode .task-list {
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(255, 255, 255, 0.03);
+}
+
+body.dark-mode .task.done {
+    background: #4a4a4a; /* Slightly darker shade for distinction */
+    color: #aaa; /* Muted color for done tasks */
+    border: 1px solid #555; /* Match with dark mode theme */
+    text-decoration: line-through; /* Keeps the line-through for done tasks */
+}
+
+
+body.dark-mode .done-btn {
+    background-color: #0080c0;
+    color: #fff;
+}
+
+body.dark-mode .delete-task-btn {
+    background-color: #0080c0;
+    color: #fff;
+}
+
+body.dark-mode .quick-add {
+    background-color: transparent;
+}
+
+body.dark-mode .quick-add input {
+    background-color: #3a3a3a;
+    color: #fff;
+    border: 1px solid #666;
+}
+
+body.dark-mode .quick-add button {
+    background-color: #0080c0;
+    color: #fff;
+}
+
+body.dark-mode .filters,
+
+body.dark-mode .pretty-select {
+    background-color: #3a3a3a;
+    color: #eaeaea;
+    border: 1px solid #666;
+}
+
+body.dark-mode dialog,
+body.dark-mode .modal-content {
+    background-color: #2a2a2a;
+    color: #fff;
+}
+
+body.dark-mode dialog input,
+body.dark-mode dialog select {
+    background-color: #3a3a3a;
+    border: 1px solid #666;
+    color: #fff;
+}
+
+body.dark-mode .button-group button {
+    background-color: #0080c0;
+    color: #fff;
+}
+
+body.dark-mode .button-group button[type="button"] {
+    background-color: #777;
+}

@@ -38,6 +38,7 @@ public class ListToDos{
 	    boolean hasCategory = category != null && !category.equals("any");
 
 
+	    //Filtern nach Kategorie/Priorität oder alles Anzeigen
 	    if (hasPriority && hasCategory) {
 	        todos = ToDoDAO.getSpecific(priority, category, user.getId());
 	    } else if (hasPriority) {

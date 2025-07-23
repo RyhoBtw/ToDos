@@ -9,11 +9,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Login ToDoPlanner</title>
-		<link rel="stylesheet" href="LandingPage.css">
+		<link rel="stylesheet" href="Stylesheets/LandingPage.css">
 	</head>
 	<body>
 	
-		<div class="bg-animation">
+	<div class="bg-animation">
         <div class="floating-shape"></div>
         <div class="floating-shape"></div>
         <div class="floating-shape"></div>
@@ -21,7 +21,7 @@
 
     <header>
         <nav>
-            <a href="#" class="logo">ToDoPlanner</a>
+            <img src="LOGO.png">
         </nav>
     </header>
 

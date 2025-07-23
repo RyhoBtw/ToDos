@@ -20,6 +20,7 @@ public class ToDoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	
+    	//Aktuellen Benutzer aus der Session holen
     	User user = (User) request.getSession().getAttribute("user");
 
         String title = request.getParameter("title");
@@ -31,6 +32,7 @@ public class ToDoServlet extends HttpServlet {
         String dueDate = request.getParameter("enddate");
         if(dueDate == null) dueDate = LocalDate.now().toString();
        
+        //Prüfen ob ToDo gelöscht werden soll
         if (request.getParameter("delet") != null) {
             ToDoDAO.delete(request.getParameter("delet"));
         } else {

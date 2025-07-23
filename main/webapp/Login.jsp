@@ -9,7 +9,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Login ToDoPlanner</title>
-		<link rel="stylesheet" href="LoginPageStyle.css">
+		<link rel="stylesheet" href="Stylesheets/LoginPageStyle.css">
 	</head>
 	<body>
 	<div class="login-container">

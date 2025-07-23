@@ -22,7 +22,7 @@ public class ChangeToDo extends HttpServlet {
         String kategorie = request.getParameter("category");
         String dueDate = request.getParameter("enddate");
 
-        // Aktualisieren in deiner Liste oder DB
+        // Aktualisieren in der Datenbank
         ToDo todo = ToDoDAO.getById(id);
         todo.setTitle(titel);
         todo.setPriority(prioritaet);

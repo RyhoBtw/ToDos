@@ -10,30 +10,30 @@ import java.util.Objects;
 
 public class ToDoDAO {
 
-    // Do wird die Verbindung zur Datenbank gmacht. Wenn se net do isch, wird se oigschdugt.
+    // Verbindung zur Datenbank herstellen
     private static Connection getConnection() throws SQLException, ClassNotFoundException, URISyntaxException {
         String dbPath = "/main/toDos.db";
         java.io.File dbFile = new java.io.File(dbPath);
 
-        // Gucka, ob's Verzeichnis scho gibt – sonscht wirds halt oigschdugt
+     
         java.io.File dbDir = dbFile.getParentFile();
         if (!dbDir.exists()) {
-            dbDir.mkdirs(); // Mir Schwoba machat halt selber, wenn nix do isch
+            dbDir.mkdirs(); 
         }
 
-        // JDBC-Treiber laade – sonscht geht gar nix
+        
         Class.forName("org.sqlite.JDBC");
 
-        // Verbindig zur SQLite-Datenbank aufbaue
+        // Verbindung zur SQLite-Datenbank aufbauen
         Connection connection = DriverManager.getConnection("jdbc:sqlite:" + dbPath);
 
-        // Falls no kei Tabelle do isch, mach mr glei oine
+        // Falls noch keine Tabelle vorhanden, neue erstellen
         initializeDatabase(connection);
 
         return connection;
     }
 
-    // Do wird die Tabelle aaglegt, wenn's no koi gibt – vorsorglich halt
+    // Initialisierung der Tabelle
     private static void initializeDatabase(Connection connection) throws SQLException {
         String createTableSQL = """
         CREATE TABLE IF NOT EXISTS todos (
@@ -49,11 +49,11 @@ public class ToDoDAO {
         """;
 
         try (Statement statement = connection.createStatement()) {
-            statement.execute(createTableSQL); // Zack, fertig isch die Tabelle
+            statement.execute(createTableSQL); 
         }
     }
 
-    // Do wird a neues ToDo gspeichert – also nei in die Datenbank gschrieba
+    // Neues ToDo in die Datenbak einfügen
     public static void save(ToDo todo) {
         String sql = "INSERT INTO todos (title, priority, category, status, due_date, user_id) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = getConnection();
@@ -69,11 +69,11 @@ public class ToDoDAO {
 
             stmt.executeUpdate();
         } catch (SQLException | ClassNotFoundException | URISyntaxException e) {
-            e.printStackTrace(); // Wenn’s kracht, sehma wenigstens warum
+            e.printStackTrace(); 
         }
     }
 
-    // Holt alle ToDos vom Benutzer – also koi fremde Sachen!
+    // Holt alle ToDos von einem bestimmten Benutzer
     public static List<ToDo> getAll(int id) {
         List<ToDo> list = new ArrayList<>();
         String sql = "SELECT * FROM todos WHERE user_id = ? ORDER BY id DESC";
@@ -81,10 +81,10 @@ public class ToDoDAO {
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)){
         	
-            stmt.setInt(1, id); // Nur die ToDos, wo au dem Benutzer ghörat
+            stmt.setInt(1, id); 
             ResultSet rs = stmt.executeQuery();
         	
-            extractTodos(list, rs); // Helferle zum Liste fülle
+            extractTodos(list, rs); 
         } catch (SQLException | ClassNotFoundException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -92,7 +92,7 @@ public class ToDoDAO {
         return list;
     }
 
-    // Holt en ToDo per ID – ganz gezielt halt
+    // Holt ein ToDo nach ID
     public static ToDo getById(int id) {
         String sql = "SELECT * FROM todos WHERE id = ?";
         try (Connection conn = getConnection();
@@ -110,16 +110,16 @@ public class ToDoDAO {
                 todo.setStatus(rs.getString("status"));
                 todo.setDueDate(rs.getString("due_date"));
                 todo.setUserID(rs.getInt("user_id"));
-                return todo; // Wenn mr ebbes findat, geb mr’s zruck
+                return todo; 
             }
 
         } catch (SQLException | ClassNotFoundException | URISyntaxException e) {
             e.printStackTrace();
         }
-        return null; // Sonscht halt nix
+        return null; 
     }
 
-    // Filtert ToDos na Prio – wenn ma’s halt eilig hat
+    // Holt alle To Dos einer bestimmten Priorität eines Benutzers
     public static List<ToDo> getByPrio(String priority, int user) {
         List<ToDo> list = new ArrayList<>();
         String sql = "SELECT * FROM todos WHERE priority = ? AND user_id =?";
@@ -137,7 +137,7 @@ public class ToDoDAO {
         return list;
     }
 
-    // Filtert na Kategorie – z.B. "Garten", "Schaffa", "Sonstigs"
+    // Holt alle To Dos einer bestimmten Kategorie eines Benutzers
     public static List<ToDo> getByCategory(String category, int user) {
         List<ToDo> list = new ArrayList<>();
         String sql = "SELECT * FROM todos WHERE category = ? AND user_id = ?";
@@ -155,7 +155,7 @@ public class ToDoDAO {
         return list;
     }
 
-    // Kombiniert Prio und Kategorie – doppelt hält besser
+    // Holt alle To Dos einer bestimmten Priorität und Kategorie eines Benutzers
     public static List<ToDo> getSpecific(String priority, String category, int user) {
         List<ToDo> list = new ArrayList<>();
         String sql = "SELECT * FROM todos WHERE priority = ? AND category = ? AND user_id = ?";
@@ -174,7 +174,7 @@ public class ToDoDAO {
         return list;
     }
     
-    // Holt alle Kategorie – halt für die Übersicht
+    // Holt alle Kategorien eines Benutzers
     public static List<String> getAllCategories(int user){
     	List<String> list = new ArrayList<>();
     	String sql = "SELECT DISTINCT category FROM todos WHERE user_id = ?";
@@ -187,7 +187,7 @@ public class ToDoDAO {
                 
                 while (rs.next()) {
                     String category = rs.getString("category");
-                    list.add(category); // Sammlt alles Einzigartige
+                    list.add(category);
                 }
 
            } catch (SQLException | ClassNotFoundException | URISyntaxException e) {
@@ -197,7 +197,7 @@ public class ToDoDAO {
            return list;
     }
 
-    // Helfer zum ToDos aus'm ResultSet raushole – macht's übersichtlicher
+    // Initialisiert ToDo-Objekte aus dem ResultSet
     private static void extractTodos(List<ToDo> list, ResultSet rs) throws SQLException {
         while (rs.next()) {
             ToDo todo = new ToDo();
@@ -213,7 +213,7 @@ public class ToDoDAO {
         }
     }
 
-    // Ändert en ToDo – z.B. wenn ma was vergesse hot
+    // Ändert ein ToDo in der Datenbank
     public static void update(ToDo todo) {
         String sql = "UPDATE todos SET title = ?, priority = ?, category = ?, due_Date = ?, status = ? WHERE id = ?";
         try (Connection conn = getConnection();
@@ -232,7 +232,7 @@ public class ToDoDAO {
         }
     }
 
-    // Schmeißt en ToDo raus – wenn’s erledigt isch oder falsch
+    // Löscht ein ToDo aus der Datenbank
     public static void delete(String id) {
         String sql = "DELETE FROM todos WHERE id = ?";
         try (Connection conn = getConnection();
@@ -246,7 +246,7 @@ public class ToDoDAO {
         }
     }
 
-    // Markiert’s ToDo als „Erledigt“ – wie sich's ghört!
+    // Setzt den Status eines ToDos auf "Done"
     public static void markAsDone(int id) {
         String sql = "UPDATE todos SET status = ? WHERE id = ?";
         try (Connection conn = getConnection();

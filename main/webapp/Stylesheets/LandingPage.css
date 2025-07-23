@@ -2,20 +2,20 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-  }
+}
 
-  body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #333;
-      overflow-x: hidden;
-  }
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    overflow-x: hidden;
+}
 
-  .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-  }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
   /* Animated Background */
 .bg-animation {
@@ -71,31 +71,14 @@ header {
     background: rgba(255, 255, 255, 0.1);
     position: sticky;
     top: 0;
-    z-index: 100;
+  	z-index: 100;
+
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: 800;
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0 50px;
-}
-
-.logo::before {
-    content: "✓";
-    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-    color: white;
-    width: 35px;
-    height: 35px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
+img{
+    margin: 20px;
+    width: 200px;
+    height: auto;
 }
 
 /* Hero Section */

@@ -4,24 +4,12 @@
     padding: 0;
 }
 
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #333;
-   
-}
-
-.content {
-	padding: 20px 0px 0vh 20px;
-    background: rgba(255, 255, 255, 0.95);
-    
-}
 /* Header layout */
 header {
 	display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
+    padding: 0px 10px;
     z-index: 100;
     position: sticky;
     top: 0;
@@ -29,74 +17,17 @@ header {
     background: rgba(255, 255, 255, 0.1);
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: 800;
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+img{
+    margin: 20px;
+    width: 200px;
+    height: auto;
 }
 
-.logo::before {
-    content: "✓";
-    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-    color: rgb(255, 255, 255);
-    width: 35px;
-    height: 35px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-}
-ul, li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-
-
-    /* Group the buttons on the right */
 .header-buttons {
     display: flex;
     gap: 1rem;
 }
 
-header.dark-mode #darkModeToggle {
-    padding: 0.5rem 1rem;
-    background: #f2f2f2;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-header.dark-mode #darkModeToggle:hover {
-    background-color: #777;
-}
-
-/* Dark Mode Button Styling */
-#darkModeToggle {
-    padding: 0.5rem 1rem;
-    background-color: #2d2d2d;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#darkModeToggle:hover {
-    background-color: #444;
-}
-
-/* Add Task Button Styling */
 .add-task-btn {
     padding: 0.5rem 1rem;
     background-color: #4caf50;
@@ -116,6 +47,27 @@ header.dark-mode #darkModeToggle:hover {
 header h1 {
     font-size: 1.6rem;
     color: #333;
+}
+
+
+/* Body-Layout */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+   
+}
+
+.content {
+	padding: 20px 0px 0vh 20px;
+    background: rgba(255, 255, 255, 0.95);
+    
+}
+
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 main {   
@@ -145,18 +97,6 @@ main {
     margin: 0 1rem; 
     margin-bottom: 12.5vh;
 }
-
-body.dark-mode .quick-add-input {
-    background: #444;
-    color: #ddd;
-    border: 1px solid #666;
-}
-
-body.dark-mode .quick-add-input:focus {
-    border-color: #4caf50;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
-}
-
 
 .task {
     display: grid;
@@ -227,17 +167,6 @@ body.dark-mode .quick-add-input:focus {
     cursor: pointer
 }
 
-body.dark-mode .task-header {
-    background: #3a3a3a; /* Dark mode background color */
-    color: #eaeaea; /* High contrast for dark mode text */
-}
-
-body.dark-mode .task {
-    background: #3a3a3a;
-    color: #fff;
-    border: 1px solid #666;
-}
-
 .task.done {
     text-decoration: line-through;
     background: #ddd;
@@ -295,8 +224,7 @@ body.dark-mode .task {
     transition: background-color 0.3s ease;
 }
 
-
-
+/* Modal-Layout */
 .modal {
     display: none;
     position: fixed;
@@ -342,6 +270,7 @@ body.dark-mode .task {
     cursor: pointer;
     color: #aaa;
 }
+
 dialog {
     border: none;
     border-radius: 10px;
@@ -390,6 +319,8 @@ form select {
     background: #aaa;
 }
 
+
+/* Filterbar-Layout */
 .filters {
     display: flex;
     gap: 1rem;
@@ -402,8 +333,38 @@ form select {
     padding: 0.4rem 0.6rem;
     border-radius: 5px;
 }
-/* Dark mode header background */
 
+.filter-bar {
+    display: flex; /* Ensure items inside align horizontally */
+    gap: 1rem; /* Adds spacing between form elements */
+    align-items: center; /* Vertically center items */
+    flex-wrap: nowrap; /* Prevent wrapping to the next line */
+    padding: 0 0 20px 20px;
+    
+}
+
+/* Make sure the <form> spans only the space it needs */
+.filter-bar form {
+    display: flex; /* Align dropdowns horizontally inside the form */
+    gap: 1rem; /* Adds spacing horizontally between filters */
+    flex-wrap: nowrap; /* Prevent line breaking inside the form */
+    margin: 0; /* Remove any default margins from the form */
+}
+
+/* Each filter container (label + select) must remain inline */
+.filter {
+    display: inline-flex; /* Align label and select side by side */
+    align-items: center; /* Vertically align label and select components */
+    gap: 0.5rem; /* Space between label and select */
+    white-space: nowrap; /* Prevent text wrapping in filters */
+}
+
+.filter label {
+    margin-right: 0.5rem;
+    font-weight: 500;
+}
+
+/* Quickadd-Layout */
 .quick-add {
     display: flex;
     align-items: center; /* Ensures all items are vertically centered */
@@ -423,8 +384,6 @@ form select {
     font-size: 100%; /* Default sizing, consistent across both */
     font-family: inherit; /* Use the body’s font style */
 }
-
-
 
 .quick-add-input {
     flex: 1; /* Ensures the input takes the available space */
@@ -457,222 +416,6 @@ form select {
     padding: 0.6rem 1rem;
     font-size: 1rem;
 }
-
-.filter-bar {
-    display: flex; /* Ensure items inside align horizontally */
-    gap: 1rem; /* Adds spacing between form elements */
-    align-items: center; /* Vertically center items */
-    flex-wrap: nowrap; /* Prevent wrapping to the next line */
-    padding: 0 0 20px 20px;
-    
-}
-
-/* Make sure the <form> spans only the space it needs */
-.filter-bar form {
-    display: flex; /* Align dropdowns horizontally inside the form */
-    gap: 1rem; /* Adds spacing horizontally between filters */
-    flex-wrap: nowrap; /* Prevent line breaking inside the form */
-    margin: 0; /* Remove any default margins from the form */
-}
-
-/* Each filter container (label + select) must remain inline */
-.filter {
-    display: inline-flex; /* Align label and select side by side */
-    align-items: center; /* Vertically align label and select components */
-    gap: 0.5rem; /* Space between label and select */
-    white-space: nowrap; /* Prevent text wrapping in filters */
-}
-
-/* Optional improvement: Ensure consistent dropdown appearance */
-.pretty-select {
-    padding: 0.5rem; /* Add padding for better usability */
-    border: 1px solid #ccc; /* Simple border */
-    border-radius: 6px; /* Smooth corners */
-    background-color: #fff; /* White background for better contrast */
-    font-size: 1rem; /* Uniform font size */
-    cursor: pointer; /* Show pointer cursor on hover */
-    transition: border-color 0.3s ease; /* Smooth border focus transition */
-}
-
-.pretty-select:focus {
-    border-color: #4caf50; /* Highlight border on focus */
-    outline: none; /* Remove the default focus outline */
-}
-
-
-.filter label {
-    margin-right: 0.5rem;
-    font-weight: 500;
-}
-
-.pretty-select {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background-color: #fff;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: border-color 0.3s ease;
-}
-
-/* Focus effect for select dropdown */
-.pretty-select:focus {
-    border-color: #4caf50;
-    outline: none;
-}
-
-
-
-/* Dark mode styles */
-/* 🌙 Dark Mode Styles – Gleiches Design, nur dunkler */
-
-
-body.dark-mode .content {
-	 background-color: black;
-}
-body.dark-mode #darkModeToggle {
-    padding: 0.5rem 1rem;
-    background-color: white;
-    color: black;
-    border: none;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-body.dark-mode .add-task-btn {
-    padding: 0.5rem 1rem;
-    background-color: #0080c0;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode label {
-    color: #eaeaea;
-}
-
-body.dark-mode .task-list {
-    background-color: #2a2a2a;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(255, 255, 255, 0.03);
-}
-
-body.dark-mode .task.done {
-    background: #4a4a4a; /* Slightly darker shade for distinction */
-    color: #aaa; /* Muted color for done tasks */
-    border: 1px solid #555; /* Match with dark mode theme */
-    text-decoration: line-through; /* Keeps the line-through for done tasks */
-}
-
-
-body.dark-mode .done-btn {
-    background-color: #0080c0;
-    color: #fff;
-}
-
-body.dark-mode .delete-task-btn {
-    background-color: #0080c0;
-    color: #fff;
-}
-
-body.dark-mode .quick-add {
-    background-color: transparent;
-}
-
-body.dark-mode .quick-add input {
-    background-color: #3a3a3a;
-    color: #fff;
-    border: 1px solid #666;
-}
-
-body.dark-mode .quick-add button {
-    background-color: #0080c0;
-    color: #fff;
-}
-
-body.dark-mode .filters,
-
-body.dark-mode .pretty-select {
-    background-color: #3a3a3a;
-    color: #eaeaea;
-    border: 1px solid #666;
-}
-
-body.dark-mode dialog,
-body.dark-mode .modal-content {
-    background-color: #2a2a2a;
-    color: #fff;
-}
-
-body.dark-mode dialog input,
-body.dark-mode dialog select {
-    background-color: #3a3a3a;
-    border: 1px solid #666;
-    color: #fff;
-}
-
-body.dark-mode .button-group button {
-    background-color: #0080c0;
-    color: #fff;
-}
-
-body.dark-mode .button-group button[type="button"] {
-    background-color: #777;
-}
-
-
-footer {
-	background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
-    padding: 40px 0;
-    text-align: center;
-    color: white;
-    margin-bottom: 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-  }
-
-.Impressum {
-	font-size: 0.8em;
-	color: black;
-	padding: 0 20px;
-}
-
-.Help {
-	width: 20px;
-    height: 20px;
-    border-radius: 50%; /* macht ihn rund */
-    background-color: black;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s;
-    margin: 0 20px;
-}
-
-.Help:hover {
-	background-color: #4CAF50;
-}
-
 
 /* 3-Punkte-Menü */
 .menu-container {
@@ -718,11 +461,6 @@ footer {
 .dropdown-menu.show {
     display: block;
     animation: fadeIn 0.2s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
 }
 
 .menu-item {
@@ -776,22 +514,88 @@ footer {
     content: '🗑️';
 }
 
-/* Status Badge */
-.status-badge {
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 500;
-    margin-top: 10px;
+
+/* Optional improvement: Ensure consistent dropdown appearance */
+.pretty-select {
+    padding: 0.5rem; /* Add padding for better usability */
+    border: 1px solid #ccc; /* Simple border */
+    border-radius: 6px; /* Smooth corners */
+    background-color: #fff; /* White background for better contrast */
+    font-size: 1rem; /* Uniform font size */
+    cursor: pointer; /* Show pointer cursor on hover */
+    transition: border-color 0.3s ease; /* Smooth border focus transition */
 }
 
-.status-badge.pending {
-    background-color: #fff3cd;
-    color: #856404;
+.pretty-select:focus {
+    border-color: #4caf50; /* Highlight border on focus */
+    outline: none; /* Remove the default focus outline */
 }
 
-.status-badge.completed {
-    background-color: #d4edda;
-    color: #155724;
+.pretty-select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
 }
+
+/* Focus effect for select dropdown */
+.pretty-select:focus {
+    border-color: #4caf50;
+    outline: none;
+}
+
+/* Footer-Layout */
+footer {
+	background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 40px 0;
+    text-align: center;
+    color: white;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+  }
+
+.Impressum {
+	font-size: 0.8em;
+	color: black;
+	padding: 0 20px;
+}
+
+.Help {
+	width: 20px;
+    height: 20px;
+    border-radius: 50%; /* macht ihn rund */
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+    margin: 0 20px;
+}
+
+.Help:hover {
+	background-color: #4CAF50;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
